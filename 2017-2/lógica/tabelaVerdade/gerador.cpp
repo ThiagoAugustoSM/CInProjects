@@ -85,6 +85,8 @@ pair <string, string> procuraParenteses(string a){
 
 void imprimiTabela(){
 	
+	//Lembrar de usar o Qsort ! :D
+	
 	// Imprimindo a primeira linha da tabela
 	printf("|");
 	set <string>::iterator itString;
