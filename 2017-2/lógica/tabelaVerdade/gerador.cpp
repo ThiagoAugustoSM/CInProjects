@@ -3,9 +3,15 @@
 #include <bits/stdc++.h>
 #define DEBUG cout << "DEBUGGING" << endl;
 
+// #include <cstdio>
+// #include <cstdlib>
+// #include <iostream>
+// #include <string>
+// #include <cstring>
+// #include <vector> 
+// #include <cmath>
 
 using namespace std;
-
 
 set <string> atomica;
 set <string> operador;

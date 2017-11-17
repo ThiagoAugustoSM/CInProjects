@@ -1,4 +1,4 @@
-inputFile = open("Expressoes.in")
+inputFile = open("EntradaTabela.in")
 outputFile = open("Expressoes.out", "w")
 
 expressoes = [] #Salvar todas as expressoes lidas no arquivo de entrada
@@ -228,9 +228,10 @@ inputFile.close()
 ###############################################################################
 
 #################### MAIN #####################################################
-for k in range(1, int(expressoes[0])):
+for k in range(1, int(expressoes[0]) + 1):
     
     expAtual = expressoes[k]
+    print(expAtual)
     
     #Inicializando valores com 0
     marcados = [0 for x in range(len(expAtual))]
