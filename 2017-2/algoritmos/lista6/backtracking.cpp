@@ -1,43 +1,108 @@
-//Questão http://www.spoj.com/problems/KNAPSACK/
-// Find the total maximum value from the best choice of items for your trip.
+// Problem: https://uva.onlinejudge.org/external/7/p750.pdf
+// Backtrack a possible eight queen problem on a board
 
+// The ideia is to create a Board with Q's and marked markSpots
+// where a number 0, 1, 2, 3, mark how many Queens attack that spot
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define SIZE_BOARD 8
 
-typedef vector<int> vi;
-typedef vector<vi> matrix;
-using namespace std;
+void bt(int row, int column, char board[SIZE_BOARD][SIZE_BOARD]){
+	markSpots(row, column, board);
+}
 
-// The first column is always filled with '0', because the capacity of the bag is 0
+char checkBoard(char board[SIZE_BOARD][SIZE_BOARD]){
+	int i, j;
+	for(i = 0; i < SIZE_BOARD; i++){
+		for(j = 0; j < SIZE_BOARD; j++){
+			if()
+		}
+	}
+}
+
+// Function to mark spots from some Queen
+void markSpots(int row, int column, char board[SIZE_BOARD][SIZE_BOARD]){
+	int i, j;
+	// marking row
+	for(j = 0 ; j < SIZE_BOARD; j++){
+		if(board[row][j] != 'Q')
+			board[row][j]++;
+		else if(board[row][j] == 'Q')
+			return 'E'; //error
+	}
+
+	// marking column
+	for(i = 0; i < SIZE_BOARD; i++){
+		if(board[i][column] != 'Q')
+			board[i][column];
+		else if(board[i][column] == 'Q')
+			return 'E';
+	}
+
+	// marking Principal diagonal
+	for(i = 1; i < SIZE_BOARD; i++){
+		if(row - i >= 0 && column - i >= 0){
+			if(board[row - i][column - i] != 'Q')
+				board[row - i][column - i]++;
+			else
+				return 'E';
+		}else{
+			break;
+		}
+	}
+	for(i = 1; i < SIZE_BOARD; i++){
+		if(row + i < SIZE_BOARD && column + i < SIZE_BOARD){
+			if(board[row + i][column + i] != 'Q')
+				board[row + i][column + i]++;
+			else
+				return 'E';
+		}else{
+			break;
+		}
+	}
+
+	// marking second diagonal
+	for(i = 1; i < SIZE_BOARD; i++){
+		if(row - i >= 0 && column + i < SIZE_BOARD){
+			if(board[row - i][column + i] != 'Q')
+				board[row - i][column + i]++;
+			else
+				return 'E';
+		}else{
+			break;
+		}
+	}
+	for(i = 1; i < SIZE_BOARD; i++){
+		if(row + i < SIZE_BOARD && column - i >= 0){
+			if(board[row + i][column - i] != 'Q')
+				board[row + i][column - i]++;
+			else
+				return 'E';
+		}else{
+			break;
+		}
+	}
+}
 
 int main(){
-    
-    int i, s, n, size, value, result = 0;
-    // s - total capacity of the bag
-    cin >> n >> s;
-    int checkBag[n][s];
-    
-    for(int j = 0; j < s; j++) checkBag[0][j] = 0;
-    
-    for(i = 1; i < n; i++){
-        cin >> size >> value;
-        
-        for(j = 0; j < size && j < s; i++){
-            checkBag[i][j] = checkBag[i - 1][j];
-        }
-        
-        for(j = size; j < s; j++){
-            if(checkBag[i][j - size] + value > checkBag[i - 1][j])
-                checkBag[i][j] = checkBag[i][j - size] + value;
-            else
-                checkBag[i][j] = checkBag[i - 1][j];
-        }
-    
-        for(i = s - 1; i >= 0; i--){
-            if(checkBag[n - 1][i] != 0)
-                break;
-        }
-        cout << checkBag[n - 1][i];    
+
+    int n, row, column;
+	char board[SIZE_BOARD][SIZE_BOARD];
+    cin >> n;
+
+	// Erasing every space at the board before using it
+	memset(&board,'0',sizeof(board[0][0]) * SIZE_BOARD * SIZE_BOARD);
+
+	for(i =)
+
+    for(i = 0; i < n; i++){
+        cin >> row >> column;
+		board[row - 1][column - 1] = 'Q';
+		if(row - 1 == 0)
+			bt(1, 0, board);
+		else
+			bt(0, 0, board);
+		memset(&board,'0',sizeof(board[0][0]) * SIZE_BOARD * SIZE_BOARD);
     }
     return 0;
 }
