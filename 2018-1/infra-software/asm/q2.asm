@@ -3,60 +3,41 @@ jmp 0x0000: main
 
 main:
 
-mov AH, 0xE
-mov AL, 'A'
-mov BH, 0
-mov BL, 4
-int 0x10
+  mov cx, sp ; Salva a posição inicial da Pilha
 
-mov cx, sp
-
-mov AH, 0 ;Número da chamada.
-xor cx, cx
 lerNovamente:
+
   ; Fazendo Leitura
-  inc cx
   mov AH, 0
-  int 0x16
-  ; AL
-  push AX
-  cmp AL, "s" ; "\n"
-  ; je teste
-  ; Printando na tela
+  int 0x16 ; Interrupção ler valor
+  ; Valor em AL
+  push AX ; Colocar valor lido na pilha
+  cmp AL, 0x0D ; Retorno de Carro, Enter!
+
+  ; Printando na tela valor lido
   mov AH, 0x0E
   mov BH, 0
   mov BL, 4
-  int 0x10
+  int 0x10 ;Interrupção Imprimir valor
 
-  inc cx
   je terminoLeitura
   jne lerNovamente
 
-teste:
-; Printando na tela
-  mov AH, 0x0E
-  mov AL, 'B'
-  mov BH, 0
-  mov BL, 4
-  int 0x10
-  jmp fim
-
 terminoLeitura:
-  dec cx
-  mov ah, 0x0E
+  ; Mode de imprimir
+  mov AH, 0x0E
 
 imprimir:
-  pop dx
-  mov al, dl
-  int 0x10      ; otherwise, print out the character!
-  dec cx
+  pop DX ; Pegar ultimo valor da pilha
+  mov AL, DL ; Imprimi o valor
+  int 0x10
 
-  cmp cx, 0
+  cmp CX, SP ;Se a pilha voltou para o inicio esta terminada a operação
   je fim
   jmp imprimir
 
 fim:
-  jmp $
+  jmp $ ; Loop infinito
 
 times 510 - ($ - $$) db 0
 dw 0xAA55
