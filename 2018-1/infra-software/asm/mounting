@@ -1,0 +1,7 @@
+nasm -f bin nomeArquivo.asm -o nomeBinario.bin
+qemu-system-i386 nomeBinario.bin
+
+(em outras versões do qemu)
+
+nasm -f bin nomeArquivo.asm -o nomeBinario.bin
+qemu-i386 nomeBinario.bin
