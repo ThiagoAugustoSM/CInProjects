@@ -3,12 +3,14 @@ jmp 0x0000: main
 
 INT_IMPRIMIR_CHAR_AL EQU 0X0E
 INT_IMPRIMIR_CHAR EQU 0x10
-QNT_INTERACOES EQU 100
+QNT_INTERACOES EQU 10
 ASCII_BACKSPACE EQU 0X08
 ASCII_FIM_DE_CARRO EQU 0X0A
 
+; O registrador CX continua sendo utilizado para a funcao loop
 main:
   mov cx, QNT_INTERACOES
+  mov al, "1"
 
 l1:
   ; Printando na tela valor lido
