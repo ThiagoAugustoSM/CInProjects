@@ -1,12 +1,7 @@
-org 0x7c00
-jmp 0x0000:start
+_start:
 
-; DW ALOCATE 2 BYTES
-quadrado DW 0, 0, 0, 255, 255, 0, 255, 255
-start:
-  xor ax, ax
+  mov ax, 0
   mov ds, ax
-  mov es, ax
 
   ; leitura tipo de cor
   mov AH, 0 ; limpando o acumulador
@@ -46,45 +41,121 @@ magenta:
   mov bl, 5
 
 leituraFigura:
-  ; Primeira leitura feita para retirar o espaço
-  ; mov AH, 0 ; limpando o acumulador
-  ; int 16h ; interrupção para leitura de dados
-  ; mov AH, 0 ; limpando o acumulador
-  ; int 16h ; interrupção para leitura de dados
 
-  ; INT 10H 0cH: Write Graphics Pixel
-  ;  Compatibility: All
-  ;  Expects: AH    0cH
-  ;           AL    color number (+80H means XOR with current value)
-  ;           BH    video page (0-based)
-  ;           CX    graphics column
-  ;           DX    graphics row
+  ; leitura do espaço
+  mov AH, 0 ; limpando o acumulador
+  int 16h ; interrupção para leitura de dados
 
+  ; leitura tipo de figura
+  mov AH, 0 ; limpando o acumulador
+  int 16h ; interrupção para leitura de dados
 
-colorir:
-  mov AH, 0ch
-  mov BH, 0
-  mov AL, BL
-  mov cx, 200
-  mov dx, 200
+  ; Salva a escolha do tipo
+  push ax
+  ; Salvando o valor da cor, pq para alterar o fundo precisa mudar BL
+  push bx
+
+  ; Modo para utilização de vídeo e VGA
+  mov ah, 0
+  mov al, 12h
   int 10h
-  ; je colorir
 
-; Mudar cor
-; quadrado:
-;   mov AH, 0xb
-;   mov BH, 0
-;   mov BL, cl
-;   int 10h ;This initializes the video hardware to display in the specified video mode.
-;   jmp fim
-; triangulo:
-;   mov AH, 0xb
-;   mov BH, 0
-;   mov BL, 6
-;   int 10h ;This initializes the video hardware to display in the specified video mode.
-;   jmp fim
+  ; Modo para alterar o fundo da tela
+  mov ah, 0xb
+  mov bh, 0 ;paleta de cores
+  mov bl, 0 ; preto
+  int 10h
+
+  pop bx
+
+  pop ax
+
+  ; Leitura da cor de entrada
+  cmp AL, "t" ; Value read is in AL
+  je printaTriangulo
+  cmp AL, "q"
+  je printaQuadrado
+  cmp AL, "T"
+  je printaTrapezio
+
+quadrado:
+
+  mov dx, 100
+  mov cx, 100
+
+coluna:
+
+  mov cx, 100
+  dec dx
+  cmp dx, 0
+  jne linha
+  ret
+
+linha:
+
+  ; Imprimir um pixel na tela
+  mov ah, 0ch ; imprimi um pixel na coordenada [dx, cx]
+  mov bh, 0
+  mov al, bl ; Passando a cor escolhida para o pixel
+  ; mov al, 0ah ; cor do pixel, verde claro
+  int 10h
+
+  dec cx
+  cmp cx, 0
+  je coluna
+  jne linha
+
+triangulo:
+
+    ;[DX, CX]
+    mov cx, 100 ; x
+    mov dx, 0 ; y
+
+  colunaTriangulo:
+
+    ; x = x + y
+    mov cx, 100
+    inc dx
+    cmp dx, 100
+    jne linhaTriangulo
+    ret
+
+  linhaTriangulo:
+
+    ; Imprimir um pixel na tela
+    mov ah, 0ch ; imprimi um pixel na coordenada [dx, cx]
+    mov bh, 0
+    mov al, bl ; Passando a cor escolhida para o pixel
+    ; mov al, 0ah ; cor do pixel, verde claro
+    int 10h
+
+    xor ax, ax
+    add ax, 100
+    add ax, dx
+
+    ; x = 100 + y ? - Imprimi um triangulo retangulo
+    inc cx
+    cmp cx, ax
+    je colunaTriangulo
+    jne linhaTriangulo
+
+printaQuadrado:
+  call quadrado
+  jmp fim
+
+printaTriangulo:
+  call triangulo
+  jmp fim
+
+; A impressão do trapézio é feita utilizando de um quadrado e um triângulo
+printaTrapezio:
+  call quadrado
+  call triangulo
+  jmp fim
+
 fim:
   jmp $
 
-times 510 - ($ - $$) db 0
-dw 0xaa55       ;assinatura de boot
+
+times 510 - ($-$$) db 0
+dw 0xaa55
