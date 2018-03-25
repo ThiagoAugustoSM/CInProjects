@@ -1,81 +1,150 @@
 org 0x7c00
 jmp 0x0000: main
 
-INT_IMPRIMIR_CHAR_AL EQU 0X0E
-INT_IMPRIMIR_CHAR EQU 0x10
-QNT_INTERACOES EQU 10
+INT_IMPRIMIR_CHAR_AH EQU 0X0E
+INT_IMPRIMIR_CHAR EQU 0x10 ;codigo da interrupcao de print char
+QNT_INTERACOES EQU 100 ;quantidade de interacoes
 ASCII_BACKSPACE EQU 0X08
 ASCII_FIM_DE_CARRO EQU 0X0A
 
-; O registrador CX continua sendo utilizado para a funcao loop
 main:
   mov cx, QNT_INTERACOES
-  mov al, "1"
+  mov al, 49 ;valor de "1"em asc, representa as unidades
+  mov dl, 48 ; valor de "0" em asc , representa os decimais
+  l1:
+    mov ah, INT_IMPRIMIR_CHAR_AH
+    mov bh, 0
+    mov bl, 4
+    push ax
+    push dx
+    cmp cx, 1
+    je imprimir100 ;Como temos apenas decimais e unidades, foi criado pra imprimir o Buzz na 100º interacao
+    jmp checar3
 
-l1:
-  ; Printando na tela valor lido
-  mov AH, INT_IMPRIMIR_CHAR_AL
-  mov BH, 0
-  mov BL, 4
+apenasDigito:
+    pop dx
+    pop ax
+    cmp dl, 48
+    je imprimirUnidade
+    push ax
+    mov al, dl
+    int INT_IMPRIMIR_CHAR
+    pop ax
+imprimirUnidade:
+    int INT_IMPRIMIR_CHAR
 
-  push ax
-  push cx
-  ; jmp divisivel15
 
-imprimirNumero:
-  int INT_IMPRIMIR_CHAR
-impresso:
-  pop cx
 imprimirEspacos:
-  mov al , ASCII_BACKSPACE ; Volta um Espaço
-  int INT_IMPRIMIR_CHAR
-  mov al , ASCII_FIM_DE_CARRO ; Pula linha
-  int INT_IMPRIMIR_CHAR
+    push ax
+    mov al , ASCII_BACKSPACE ; Volta um Espaço
+    int INT_IMPRIMIR_CHAR
+    int INT_IMPRIMIR_CHAR
+    int INT_IMPRIMIR_CHAR
+    int INT_IMPRIMIR_CHAR
+    int INT_IMPRIMIR_CHAR
+    int INT_IMPRIMIR_CHAR
+    int INT_IMPRIMIR_CHAR
+    int INT_IMPRIMIR_CHAR
+    ;voltou a quantidade de vezes do tamanho da maior palavra "FizzBuzz"
+    mov al , ASCII_FIM_DE_CARRO ; Pula linha
+    int INT_IMPRIMIR_CHAR
+    pop ax
+    inc al
+    cmp al, 58
+    je subtrair48
+retorno:
 
-  pop ax
-  inc al
-  loop l1
-  jmp fim
+    loop l1
 
-; The div instruction is used to perform a division.
-; Always divides the 64 bits value accross EDX:EAX by a value.
-; The result of the division is stored in EAX and the remainder in EDX.
-; Before: ax/
-divisivel15:
-  mov dx, 0
-  mov cx, 15
-  div cx
-  cmp dx, 0
-  je imprimir15
-  jne divisivel5
-imprimir15:
-  mov al, "f"
-  int INT_IMPRIMIR_CHAR
-  jmp impresso
+    jmp fim
 
-divisivel5:
-  mov dx, 0
-  mov cx, 5
-  div cx
-  cmp dx, 0
-  je imprimir5
-  jne divisivel3
-imprimir5:
-  mov al, "5"
-  int INT_IMPRIMIR_CHAR
-  jmp impresso
+imprimir100:
+    mov ah, INT_IMPRIMIR_CHAR_AH
+    mov al, "B"
+    int INT_IMPRIMIR_CHAR
+    mov al, "u"
+    int INT_IMPRIMIR_CHAR
+    mov al, "z"
+    int INT_IMPRIMIR_CHAR
+    mov al, "z"
+    int INT_IMPRIMIR_CHAR
+    jmp fim
+
+subtrair48: ;label responsavel por zerar as unidades e incrementar as dezenas
+    mov al, 48
+    inc dl
+    jmp retorno
+
+checar3:
+    mov ah, 0
+    mov dh, 10
+    add al, -0
+
+    add dl, -0
+    push ax
+    mov al, dl
+    mul dh ; ax= al*op
+    mov dx, ax
+    pop ax
+    add ax, dx
+
+    push ax
+
+    mov dh, 3
+    div dh
+    cmp ah, 0
+    je divisivel3
+
+checar5:
+
+    ;mov ax, dx
+    pop ax
+    add ax, -3
+    ;push dx
+    mov dh, 5
+    div dh ;ah= ax%op
+    ;pop dx
+    cmp ah, 0
+    je divisivel5
+
+    jmp apenasDigito
+
 
 divisivel3:
-  mov dx, 0
-  mov cx, 3
-  div cx
-  cmp dx, 0
-  je imprimir3
-  jne imprimirNumero
-imprimir3:
-  mov al, "3"
-  int INT_IMPRIMIR_CHAR
-  jmp impresso
+    mov ah, INT_IMPRIMIR_CHAR_AH
+    mov al, "F"
+    int INT_IMPRIMIR_CHAR
+    mov al, "i"
+    int INT_IMPRIMIR_CHAR
+    mov al, "z"
+    int INT_IMPRIMIR_CHAR
+    mov al, "z"
+    int INT_IMPRIMIR_CHAR
+    ;checar se é divisivel por 5 tb
+    pop ax
+    add ax, -3
+    mov dh, 5
+    div dh
+    cmp ah, 0
+    je divisivel5
+    pop dx
+    pop ax
+    jmp imprimirEspacos
+
+divisivel5:
+    mov ah, INT_IMPRIMIR_CHAR_AH
+    mov al, "B"
+    int INT_IMPRIMIR_CHAR
+    mov al, "u"
+    int INT_IMPRIMIR_CHAR
+    mov al, "z"
+    int INT_IMPRIMIR_CHAR
+    mov al, "z"
+    int INT_IMPRIMIR_CHAR
+    pop dx
+    pop ax
+    jmp imprimirEspacos
+
 
 fim:
   jmp $
