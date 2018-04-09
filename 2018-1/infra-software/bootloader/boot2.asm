@@ -20,9 +20,6 @@ delay:
 	back:
 	dec bp
 	nop
-    nop
-    nop
-    nop
 	jnz back
 	dec dx
 	cmp dx,0    
