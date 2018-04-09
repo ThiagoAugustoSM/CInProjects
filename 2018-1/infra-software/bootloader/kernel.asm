@@ -6,5 +6,11 @@ start:
 	mov ds, ax
 	mov es, ax
 
+	; Modo para utilização de vídeo e VGA
+	mov ah, 0
+	mov al, 12h
+	int 10h
+
+
 done:
 	jmp $
