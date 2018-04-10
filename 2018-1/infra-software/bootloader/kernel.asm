@@ -3,6 +3,7 @@ jmp 0x0000:start
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Diretivas para alocacao de strings que serao utilizadas no decorrer do programa
+;; Os 0's ao final das string sao para saber qual o final
 c1 db 'b', 0
 c2 db 'a', 0
 c3 db 'y', 0
@@ -27,9 +28,8 @@ jmpLine db 10, 13, 0
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Funcionamento da funcao:
 ;; Antes de chamar delay deve-se colocar algum valor em dx
-;;
+;; Implementada utilizando espera ocupada
 delay:
-;; Função que aplica um delay(improvisado) baseado no valor de dx
 	mov bp, dx
 	back:
 	dec bp
@@ -39,26 +39,39 @@ delay:
 	cmp dx,0
 	jnz back
 ret
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Funcionamento da funcao:
+;; Printa a string que esta em si
+;; lodsb incrementa si e move o valor anterior de SI em AL
+printString:
+
+	lodsb
+	cmp al, 0
+	je exit
+
+	; Imprimi na tela o valor
+	mov ah, 0xe ; Input para imprimir char
+  mov bl, 0xf ; Cor = Branco
+	int 10h
+
+	mov dx, 30 ; Tempo do delay
+	call delay
+
+	jmp printString
+exit:
+    ret
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-	printString:
-	;; Printa a string que esta em si
-
-		lodsb
-		cmp al, 0
-		je exit
-
-		mov ah, 0xe
-	    mov bl, 0xf
-		int 10h
-
-		mov dx, 30;tempo do delay
-		call delay
-
-		jmp printString
-	exit:
-	    ret
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Funcionamento da funcao:
+;; Imprimi um quadrado nas posicoes iniciais CX e DX
+;; O tamanho do quadrado eh 100 x 100
+;; Modelo impresso pixel a pixel
+;; Todas as funcoes do tipo qX e imprimirBack são do mesmo tipo so mudam a posicao do retangulo
+;; as cores e seus respectivos tamanhos
 q1:
 	mov dx, 190
 	mov cx, 190
@@ -83,9 +96,7 @@ q1:
 	cmp cx, 290
 	je coluna1
 	jne linha1
-
-
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 q2:
 	mov dx, 190
@@ -177,11 +188,11 @@ imprimirBack:
 
   linhaBack:
 
-; Imprimir um pixel na tela
+	; Imprimir um pixel na tela
   mov ah, 0ch ; imprimi um pixel na coordenada [dx, cx]
   mov bh, 0
   mov al, bl ; Passando a cor escolhida para o pixel
-; mov al, 0ah ; cor do pixel, verde claro
+	; mov al, 0ah ; cor do pixel, verde claro
   int 10h
 
   inc cx
@@ -189,108 +200,132 @@ imprimirBack:
   je colunaBack
   jne linhaBack
 
-	changeQ1:
-		mov al, 15
-		call q1
-		mov dx, 500
-		call delay
-		mov al, 1
-		call q1
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Funcionamento da funcao:
+;; O objetivo eh piscar algum determinado quadrado
+;; Modifica-se o valor de al para branco e depois para o valor natural do quadrado
+;; Cores AL:
+;; 15 - Branco
+;; 1 - Azul
+;; 14 - Amarelo
+;; 2 - Verde
+;; 4 - Vermelho
+;; As funcoes do tipoe changeQX sao do mesmo escopo
+changeQ1:
+	mov al, 15
+	call q1
+	mov dx, 500
+	call delay
+	mov al, 1
+	call q1
 
-		mov al, 0
-		jmp  changed
+	; Move-se o valor final para saber qual foi o retangulo modificado
+	; Ex: Ao termino de changeQ1 AL terá o valor 0
+	; Ao termino de changeQ2 AL terá o valor 1, etc...
+	mov al, 0
+	jmp  changed
 
-	changeQ2:
-		mov al, 15
-		call q2
-		mov dx, 500
-		call delay
-		mov al, 14
-		call q2
+changeQ2:
+	mov al, 15
+	call q2
+	mov dx, 500
+	call delay
+	mov al, 14
+	call q2
 
-		mov al, 1
-		jmp  changed
+	mov al, 1
+	jmp  changed
 
-	 changeQ3:
-		mov al, 15
-		call q3
-		mov dx, 500
-		call delay
-		mov al, 2
-		call q3
+ changeQ3:
+	mov al, 15
+	call q3
+	mov dx, 500
+	call delay
+	mov al, 2
+	call q3
 
-		mov al, 2
-		jmp  changed
+	mov al, 2
+	jmp  changed
 
-	 changeQ4:
-		mov al, 15
-		call q4
-		mov dx, 500
-		call delay
-		mov al, 4
-		call q4
+ changeQ4:
+	mov al, 15
+	call q4
+	mov dx, 500
+	call delay
+	mov al, 4
+	call q4
 
-		mov al, 3
-		jmp  changed
+	mov al, 3
+	jmp  changed
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	changeQ1entrada:
-		mov al, 15
-		call q1
-		mov dx, 500
-		call delay
-		mov al, 1
-		call q1
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Funcionamento da funcao:
+;; O objetivo eh piscar algum determinado quadrado depois de ter a entrada do teclado do usuario
+;; Modifica-se o valor de al para branco e depois para o valor natural do quadrado
+;; O modelo de modificar as cores também são no modelo do tipo da funcao changeQX
+;; As funcoes do tipoe changeQXentrada sao do mesmo escopo
+changeQ1entrada:
+	mov al, 15
+	call q1
+	mov dx, 500
+	call delay
+	mov al, 1
+	call q1
 
-		mov al, 0
-		jmp  correto
+	mov al, 0
+	jmp  correto
 
-	changeQ2entrada:
-		mov al, 15
-		call q2
-		mov dx, 500
-		call delay
-		mov al, 14
-		call q2
+changeQ2entrada:
+	mov al, 15
+	call q2
+	mov dx, 500
+	call delay
+	mov al, 14
+	call q2
 
-		mov al, 1
-		jmp  correto
+	mov al, 1
+	jmp  correto
 
-	 changeQ3entrada:
-		mov al, 15
-		call q3
-		mov dx, 500
-		call delay
-		mov al, 2
-		call q3
+ changeQ3entrada:
+	mov al, 15
+	call q3
+	mov dx, 500
+	call delay
+	mov al, 2
+	call q3
 
-		mov al, 2
-		jmp  correto
+	mov al, 2
+	jmp  correto
 
-	 changeQ4entrada:
-		mov al, 15
-		call q4
-		mov dx, 500
-		call delay
-		mov al, 4
-		call q4
+ changeQ4entrada:
+	mov al, 15
+	call q4
+	mov dx, 500
+	call delay
+	mov al, 4
+	call q4
 
-		mov al, 3
-		jmp  correto
+	mov al, 3
+	jmp  correto
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; generate a rand no using the system time
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Funcionamento da funcao:
+;; O objetivo da funcao eh gerar um numero randomico
+;; Utiliza-se o tempo do sistema
 random:
-	mov ah, 00h  ; interrupts to get system time
-	int 1ah      ; CX:DX now hold number of clock ticks since midnight  ; lets just take the lower bits of DL for a start..
-	mov ax,dx
+	mov ah, 00h  ; Interrupcao para pegar o tempo do sistema
+	int 1ah      ; CX:DX tem os valores do clock desde a meia noite
+	mov ax,dx ; AX eh o dividendo
 	xor dx,dx
-	mov cx,4
-	div cx
-	add dl,'0'
+	mov cx, 4 ; Cx eh o divisor
+	div cx ; O resto da divisao fica em dl
+	add dl,'0' ; Soma-se '0' para termos valores de 0 a 3 como representacao
 
-	; pop cx
 	push dx ;Salvando o valor de Dx na Pilha
 
-	; Printar Mensagem
+	; Printar Mensagem, para sabermos qual valor salvo do resto
 	; mov al, dl
 	; mov ah, 0xe
 	; mov bl, 0xf
@@ -357,6 +392,7 @@ addRandom:
 
 imprimirGenius:
 
+	; Imprimi os blocos de instrução
 	mov al, 1
 	call q1
 	mov al, 14
@@ -366,6 +402,11 @@ imprimirGenius:
 	mov al, 4
 	call q4
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Funcionamento da funcao:
+;; Modo para amostragem da ultima sequencia do Jogo para o usuario
+;; O loop eh feito analisando os valores da Pilha
+;; Olhar questao q3.asm da lista para analisar como analisar valores da pilha
 play:
 	; Adianta uma posição para que dx possa realmente apontar para o primeiro valor da stack
 	mov dx, si
@@ -391,13 +432,16 @@ play:
 		je changeQ4
 
 changed:
-		cmp si, di
+		cmp si, di ; Se chegou ao final da pilha
 		je execute
 		sub si, 1
-		; jmp analisePilha
+
 teclaLida:
 		jmp loop
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Funcionamento da funcao:
+;; Modo para analise dos inputs do usuario em relacao a pilha de dados
 execute:
 analisePilha:
 	pop si ; Recuperando o valor de SI
@@ -408,7 +452,6 @@ analisePilha:
 	loop2:
 
 		mov bx, [si]
-
 		; Fazendo leitura da tecla
 		mov ah, 0
 		int 16h
@@ -425,11 +468,8 @@ analisePilha:
 		je changeQ4entrada
 
 		errado:
-			mov al, 'k'
-			mov ah, 0xe
-			mov bl, 0xf
-			int 10h
 
+			; Mensagem de texto errado
 			mov si, l7q1
 			call printString
 			mov si,jmpLine
@@ -438,6 +478,8 @@ analisePilha:
 			mov ah, 0
 			int 16h
 
+			; y -> restart
+			; qualquerOutra -> mostrar creditos
 			cmp al, 'y'
 			je restart
 			jmp creditos
@@ -449,6 +491,7 @@ analisePilha:
 			jmp loop2
 
 		restart:
+			; Bloco para teste se esta entrando em restart
 			; mov al, 'r'
 			; mov ah, 0xe
 			; mov bl, 0xf

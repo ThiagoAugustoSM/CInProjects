@@ -1,6 +1,8 @@
+;definir endereço do inicio do boot2
 org 0x500;
 jmp 0x000: start
 
+;Strings a serem impressos
 str1 db 'Loading structures for the kernel', 0
 str2 db 'Setting up protected mode', 0
 str3 db 'Loading kernel in memory', 0
@@ -58,44 +60,16 @@ print3Dots:
     call printString
 ret
 
-; ;;;;;;;;;;;;;;;;;;;
-; quadrado:
-
-;   mov cx, 600 ;;;;;X
-
-; coluna:
-
-;   mov dx, 150 ;;Y
-;   dec cx
-;   cmp cx, 50
-;   jne linha
-;   ret
-
-; linha:
-
-;   ; Imprimir um pixel na tela
-;   mov ah, 0ch ; imprimi um pixel na coordenada [dx, cx]
-;   mov bh, 0
-;   mov al, bl ; Passando a cor escolhida para o pixel
-;   ; mov al, 0ah ; cor do pixel, verde claro
-;   int 10h
-
-;   dec dx
-;   cmp dx, 100
-;   je coluna
-;   jne linha
-; ;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;inicio loading bar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 quadrado:
 
-  mov cx, ax ;;;;;X inicia em 50
-  add ax, 75
+  mov cx, ax ;X inicia em 50
+  add ax, 75 ;Y inicia em 75
 coluna:
 
   mov dx, 400 ;;Y
-  inc cx
-  cmp cx, ax ;;;aumentar até 100 e aumenta até 100
+  inc cx ;incrementar X
+  cmp cx, ax ;aumentar até AX
   jne linha
   ;;;;;atualizar o ax
   dec ax
@@ -115,7 +89,7 @@ linha:
   cmp dx, 350 ;;fim do Y
   je coluna
   jne linha
-;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;fim loading bar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 
@@ -167,25 +141,6 @@ start:
     pop ax
     call quadrado
 
-    ; mov si, str2
-    ; call printString
-    ; call print3Dots
-
-    ; mov si, str3
-    ; call printString
-    ; call print3Dots
-
-    ; mov si, str4
-    ; call printString
-    ; call print3Dots
-
-    ; mov si, str4
-    ; call printString
-    ; call print3Dots
-
-    ; mov si, str4
-    ; call printString
-    ; call print3Dots
     push ax
     mov si, str2
     call printString
@@ -220,36 +175,11 @@ start:
     call printString
     call print3Dots
 
-    ; mov si, str4
-    ; call printString
-    ; call print3Dots
-
-
-    ; mov si, str5
-    ; call printString
-    ; call print3Dots
-
-    ; call print3Dots
-    ; call print3Dots
-
-
     mov si, str5
     call printString
     call print3Dots
     call print3Dots
     call print3Dots
-
-    ; mov si, str6
-    ; call printString
-    ; call print3Dots
-
-
-    ; call print3Dots
-    ; call print3Dots
-
-    ; mov si, str7
-    ; call printString
-    ; call print3Dots
 
     call print3Dots
     call print3Dots
@@ -265,8 +195,8 @@ start:
 
     pop ax ;;deixar AX onde tava antes
 
-;Carrega na memoria o kernel
-	mov ax, 0x7e0
+		;Carrega na memoria o kernel
+		mov ax, 0x7e0
     mov es, ax
     xor bx, bx
 
