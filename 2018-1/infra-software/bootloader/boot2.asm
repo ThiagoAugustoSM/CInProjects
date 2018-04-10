@@ -86,47 +86,47 @@ start:
     call printString
     call print3Dots
 
-    mov si, str2
-    call printString
-    call print3Dots
+    ; mov si, str2
+    ; call printString
+    ; call print3Dots
 
-    mov si, str3
-    call printString
-    call print3Dots
+    ; mov si, str3
+    ; call printString
+    ; call print3Dots
 
-    mov si, str4
-    call printString
-    call print3Dots
+    ; mov si, str4
+    ; call printString
+    ; call print3Dots
 
-    mov si, str4
-    call printString
-    call print3Dots
+    ; mov si, str4
+    ; call printString
+    ; call print3Dots
 
-    mov si, str4
-    call printString
-    call print3Dots
+    ; mov si, str4
+    ; call printString
+    ; call print3Dots
 
-    mov si, str4
-    call printString
-    call print3Dots
+    ; mov si, str4
+    ; call printString
+    ; call print3Dots
 
-    mov si, str5
-    call printString
-    call print3Dots
+    ; mov si, str5
+    ; call printString
+    ; call print3Dots
 
-    call print3Dots
-    call print3Dots
+    ; call print3Dots
+    ; call print3Dots
 
-    mov si, str6
-    call printString
-    call print3Dots
+    ; mov si, str6
+    ; call printString
+    ; call print3Dots
 
-    call print3Dots
-    call print3Dots
+    ; call print3Dots
+    ; call print3Dots
 
-    mov si, str7
-    call printString
-    call print3Dots
+    ; mov si, str7
+    ; call printString
+    ; call print3Dots
     
 ;Carrega na memoria o kernel
 	mov ax, 0x7e0
