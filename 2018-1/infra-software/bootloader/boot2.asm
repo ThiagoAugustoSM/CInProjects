@@ -168,27 +168,6 @@ start:
     pop ax
     call quadrado
 
-<<<<<<< HEAD
-    ; mov si, str2
-    ; call printString
-    ; call print3Dots
-
-    ; mov si, str3
-    ; call printString
-    ; call print3Dots
-
-    ; mov si, str4
-    ; call printString
-    ; call print3Dots
-
-    ; mov si, str4
-    ; call printString
-    ; call print3Dots
-
-    ; mov si, str4
-    ; call printString
-    ; call print3Dots
-=======
     push ax
     mov si, str2
     call printString
@@ -222,40 +201,22 @@ start:
     mov si, str4
     call printString
     call print3Dots
->>>>>>> 331c960e0bc688f6a8a27da8b880e88a11b0d12a
 
     ; mov si, str4
     ; call printString
     ; call print3Dots
 
-<<<<<<< HEAD
-    ; mov si, str5
-    ; call printString
-    ; call print3Dots
-
-    ; call print3Dots
-    ; call print3Dots
-=======
 
     mov si, str5
     call printString
     call print3Dots
     call print3Dots
     call print3Dots
->>>>>>> 331c960e0bc688f6a8a27da8b880e88a11b0d12a
 
     ; mov si, str6
     ; call printString
     ; call print3Dots
 
-<<<<<<< HEAD
-    ; call print3Dots
-    ; call print3Dots
-
-    ; mov si, str7
-    ; call printString
-    ; call print3Dots
-=======
     call print3Dots
     call print3Dots
     pop ax
@@ -269,7 +230,6 @@ start:
     call print3Dots
 
     pop ax ;;deixar AX onde tava antes
->>>>>>> 331c960e0bc688f6a8a27da8b880e88a11b0d12a
     
 ;Carrega na memoria o kernel
 	mov ax, 0x7e0
