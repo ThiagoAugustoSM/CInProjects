@@ -1,7 +1,9 @@
+;definir endereço do inicio do bootloader
 org 0x7c00
 jmp 0x0000:start
 
 start:
+    ;limpar o registrador ax. ds e es
     xor ax, ax
     mov ds, ax
     mov es, ax
@@ -10,16 +12,12 @@ start:
     mov es, ax
     xor bx, bx   ;posição = es<<1+bx
 
-    jmp reset
-
 reset:
     mov ah, 00h ;reseta o controlador de disco
-    mov dl, 0   ;floppy disk
+    mov dl, 00   ;floppy disk
     int 13h
 
     jc reset    ;se o acesso falhar, tenta novamente
-
-    jmp load
 
 load:
     mov ah, 02h ;lê um setor do disco

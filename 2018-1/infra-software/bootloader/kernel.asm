@@ -1,8 +1,8 @@
 org 0x7e00
 jmp 0x0000:start
 
-; story1 db 'Loading structures for the kernel', 0
-; breakLine db '.', 10, 13, 0
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Diretivas para alocacao de strings que serao utilizadas no decorrer do programa
 c1 db 'b', 0
 c2 db 'a', 0
 c3 db 'y', 0
@@ -13,26 +13,27 @@ l4q1 db '                               THE SIMON GAME', 0
 l5q1 db '                              ----------------', 0
 l6q1 db '  ', 0
 l7q1 db 'Voce perdeu, deseja jogar novamente?[y/n]', 0
-l8q1 db 'cccccccccccccddddddddddddd', 0
-l9q1 db '  cccccccccccddddddddddd', 0
-l10q1 db '   cccccccccddddddddd', 0
-l11q1 db '     cccccccddddddd', 0
-l12q1 db '       cccccddddd', 0
-l13q1 db '         cccddd', 0
-l14q1 db '           cd', 0
+l8q1 db '                              JOGO DESENVOLVIDO POR', 0
+l9q1 db '                              mbgj - Michael Barney', 0
+l10q1 db '                             rjvw - Ramon Wanderley', 0
+l11q1 db '                             tasm2 - Thiago Augusto', 0
+l12q1 db '                              ---------------------', 0
+l13q1 db '                       Projeto realizado na disciplina de', 0
+l14q1 db '                       Infraestrutura de Software 2018.1', 0
 l15q1 db '', 0
 jmpLine db 10, 13, 0
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Funcionamento da funcao:
+;; Antes de chamar delay deve-se colocar algum valor em dx
+;;
 delay:
 ;; Função que aplica um delay(improvisado) baseado no valor de dx
 	mov bp, dx
 	back:
 	dec bp
 	nop
-    nop
-		nop
-    nop
 	jnz back
 	dec dx
 	cmp dx,0
@@ -289,10 +290,11 @@ random:
 	; pop cx
 	push dx ;Salvando o valor de Dx na Pilha
 
-	mov al, dl
-	mov ah, 0xe
-	mov bl, 0xf
-	int 10h
+	; Printar Mensagem
+	; mov al, dl
+	; mov ah, 0xe
+	; mov bl, 0xf
+	; int 10h
 
 	mov dx, cx
 
@@ -438,7 +440,7 @@ analisePilha:
 
 			cmp al, 'y'
 			je restart
-			jmp done
+			jmp creditos
 
 		correto:
 			cmp si, di
@@ -451,12 +453,58 @@ analisePilha:
 			; mov ah, 0xe
 			; mov bl, 0xf
 			; int 10h
+			jmp start
+
+			creditos:
+
 			mov ah, 0
 			mov al, 12h
 			int 10h
-			jmp start
 
+			mov si,jmpLine
+			call printString
+			mov si,jmpLine
+			call printString
+			mov si,jmpLine
+			call printString
 
+			mov si, l8q1
+			call printString
+			mov si,jmpLine
+			call printString
+
+			mov si,jmpLine
+			call printString
+
+			mov si, l9q1
+			call printString
+			mov si,jmpLine
+			call printString
+
+			mov si, l10q1
+			call printString
+			mov si,jmpLine
+			call printString
+
+			mov si, l11q1
+			call printString
+			mov si,jmpLine
+			call printString
+
+			mov si, l12q1
+			call printString
+			mov si,jmpLine
+			call printString
+
+			mov si, l13q1
+			call printString
+			mov si,jmpLine
+			call printString
+
+			mov si, l14q1
+			call printString
+			mov si,jmpLine
+			call printString
 
 done:
 	jmp $
