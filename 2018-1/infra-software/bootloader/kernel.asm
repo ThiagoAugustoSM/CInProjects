@@ -12,7 +12,7 @@ l3q1 db '                              ----------------', 0
 l4q1 db '                               THE SIMON GAME', 0
 l5q1 db '                              ----------------', 0
 l6q1 db '  ', 0
-l7q1 db 'bbbbbbbbbbbbbaaaaaaaaaaaaa', 0
+l7q1 db 'Voce perdeu, deseja jogar novamente?[y/n]', 0
 l8q1 db 'cccccccccccccddddddddddddd', 0
 l9q1 db '  cccccccccccddddddddddd', 0
 l10q1 db '   cccccccccddddddddd', 0
@@ -427,6 +427,17 @@ analisePilha:
 			mov ah, 0xe
 			mov bl, 0xf
 			int 10h
+
+			mov si, l7q1
+			call printString
+			mov si,jmpLine
+			call printString
+
+			mov ah, 0
+			int 16h
+
+			cmp al, 'y'
+			je restart
 			jmp done
 
 		correto:
@@ -434,6 +445,18 @@ analisePilha:
 			je addRandom
 			sub si, 2
 			jmp loop2
+
+		restart:
+			; mov al, 'r'
+			; mov ah, 0xe
+			; mov bl, 0xf
+			; int 10h
+			mov ah, 0
+			mov al, 12h
+			int 10h
+			jmp start
+
+
 
 done:
 	jmp $
