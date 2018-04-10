@@ -6,13 +6,11 @@ str2 db 'Setting up protected mode', 0
 str3 db 'Loading kernel in memory', 0
 str4 db 'Running kernel', 0
 str5 db 'Wait a minute', 0
-str6 db 'We are setting everything up to you', 0
-str7 db 'Now it is okay', 0
+str6 db 'We are setting everything up for you', 0
+str7 db 'We are ready for....Genius', 0
 dot db '.', 0
 dotBreakLine db '.', 10, 13, 0
 
-
-printStrings:
 
 delay: 
 ;; Função que aplica um delay(improvisado) baseado no valor de dx
@@ -28,13 +26,12 @@ ret
 
 printString: 
 ;; Printa a string que esta em si    
-	
 	lodsb
 	cmp al, 0
 	je exit
 
 	mov ah, 0xe
-    mov bl, 0xf
+    mov bl, 2
 	int 10h	
 
 	mov dx, 100;tempo do delay
@@ -45,21 +42,82 @@ exit:
     ret
 
 print3Dots:
-    mov dx, 10;tempo do delay
+    mov dx, 300;tempo do delay
     call delay
     mov si, dot
     call printString
 
-    mov dx, 10;tempo do delay
+    mov dx, 300;tempo do delay
     call delay
     mov si, dot
     call printString
     
-    mov dx, 10;tempo do delay
+    mov dx, 300;tempo do delay
     call delay
     mov si, dotBreakLine
     call printString
 ret
+
+; ;;;;;;;;;;;;;;;;;;;
+; quadrado:
+
+;   mov cx, 600 ;;;;;X
+
+; coluna:
+
+;   mov dx, 150 ;;Y
+;   dec cx
+;   cmp cx, 50
+;   jne linha
+;   ret
+
+; linha:
+
+;   ; Imprimir um pixel na tela
+;   mov ah, 0ch ; imprimi um pixel na coordenada [dx, cx]
+;   mov bh, 0
+;   mov al, bl ; Passando a cor escolhida para o pixel
+;   ; mov al, 0ah ; cor do pixel, verde claro
+;   int 10h
+
+;   dec dx
+;   cmp dx, 100
+;   je coluna
+;   jne linha
+; ;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;
+quadrado:
+
+  mov cx, ax ;;;;;X inicia em 50
+  add ax, 75
+coluna:
+
+  mov dx, 400 ;;Y
+  inc cx
+  cmp cx, ax ;;;aumentar até 100 e aumenta até 100
+  jne linha
+  ;;;;;atualizar o ax
+  dec ax
+  ret
+
+linha:
+
+  ; Imprimir um pixel na tela
+  push ax
+  mov ah, 0ch ; imprimi um pixel na coordenada [dx, cx]
+  mov bh, 0
+  mov al, bl ; Passando a cor escolhida para o pixel
+  int 10h
+  pop ax
+
+  dec dx
+  cmp dx, 350 ;;fim do Y
+  je coluna
+  jne linha
+;;;;;;;;;;;;;;;;
+
+
 
 start:
 
@@ -81,11 +139,36 @@ start:
 	mov al, 12h
 	int 10h
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;;DEFINIR A COR
+    mov bl, 2
+    push bx
+
+    ; Modo para alterar o fundo da tela
+    mov ah, 0xb
+    mov bh, 0 ;paleta de cores
+    mov bl, 0 ; preto
+    int 10h
+
+    pop bx
+
+    push ax ;;usar ax para guardar a posição atual do carregamento
+    mov ax, 50 ;; posição inicial é 50
+    call quadrado
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
     ;Printando Strings
+    push ax
     mov si, str1
     call printString
     call print3Dots
+    pop ax
+    call quadrado
 
+<<<<<<< HEAD
     ; mov si, str2
     ; call printString
     ; call print3Dots
@@ -105,28 +188,88 @@ start:
     ; mov si, str4
     ; call printString
     ; call print3Dots
+=======
+    push ax
+    mov si, str2
+    call printString
+    call print3Dots
+    pop ax
+    call quadrado
+
+
+    push ax   
+    mov si, str3
+    call printString
+    call print3Dots
+    pop ax
+    call quadrado
+
+    push ax
+    mov si, str4
+    call printString
+    call print3Dots
+    pop ax
+    call quadrado
+
+    push ax
+    mov si, str4
+    call printString
+    call print3Dots
+    pop ax
+    call quadrado
+
+    push ax
+    mov si, str4
+    call printString
+    call print3Dots
+>>>>>>> 331c960e0bc688f6a8a27da8b880e88a11b0d12a
 
     ; mov si, str4
     ; call printString
     ; call print3Dots
 
+<<<<<<< HEAD
     ; mov si, str5
     ; call printString
     ; call print3Dots
 
     ; call print3Dots
     ; call print3Dots
+=======
+
+    mov si, str5
+    call printString
+    call print3Dots
+    call print3Dots
+    call print3Dots
+>>>>>>> 331c960e0bc688f6a8a27da8b880e88a11b0d12a
 
     ; mov si, str6
     ; call printString
     ; call print3Dots
 
+<<<<<<< HEAD
     ; call print3Dots
     ; call print3Dots
 
     ; mov si, str7
     ; call printString
     ; call print3Dots
+=======
+    call print3Dots
+    call print3Dots
+    pop ax
+    call quadrado
+
+    mov si, str7
+    call printString
+    call print3Dots
+    call print3Dots
+    call print3Dots
+    call print3Dots
+
+    pop ax ;;deixar AX onde tava antes
+>>>>>>> 331c960e0bc688f6a8a27da8b880e88a11b0d12a
     
 ;Carrega na memoria o kernel
 	mov ax, 0x7e0
