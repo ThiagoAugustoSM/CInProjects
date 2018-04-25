@@ -47,11 +47,14 @@ pthread_mutex_t mymutex[TAMANHO_LINHAS] = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutexClear = PTHREAD_MUTEX_INITIALIZER;
 
 void imprimiMatriz(){
-    // int espacos, i = 0;
-    // for(; i < TAMANHO_LINHAS; i++){
-    //     espacos = 40 - (int)strlen(tabelaViagens[i].cidade);
-    //     memset(tabelaViagens[i].espacos, 40, espacos);
-    // }
+    int espacos, i = 0, j = 0;
+    for(; i < TAMANHO_LINHAS; i++){
+        espacos = 40 - (int)strlen(tabelaViagens[i].cidade);
+        for(j = 0; j < espacos; j++){
+            tabelaViagens[i].espacos[j] = ' ';
+        }
+        tabelaViagens[i].espacos[j] = '\0';
+    }
     printf(ANSI_COLOR_RED ANSI_COLOR_LETTER_BLACK "%s %s %s%s" ANSI_COLOR_RESET " \t%s\n", tabelaViagens[0].codigoViagem, tabelaViagens[0].cidade, tabelaViagens[0].espacos, tabelaViagens[0].horario, tabelaViagens[0].enderecoArquivo);
     printf(ANSI_COLOR_YELLOW ANSI_COLOR_LETTER_BLACK "%s %s %s%s" ANSI_COLOR_RESET " \t%s\n", tabelaViagens[1].codigoViagem, tabelaViagens[1].cidade, tabelaViagens[1].espacos, tabelaViagens[1].horario, tabelaViagens[1].enderecoArquivo);
     printf(ANSI_COLOR_BLUE ANSI_COLOR_LETTER_BLACK "%s %s %s%s" ANSI_COLOR_RESET " \t%s\n", tabelaViagens[2].codigoViagem, tabelaViagens[2].cidade, tabelaViagens[2].espacos, tabelaViagens[2].horario, tabelaViagens[2].enderecoArquivo);
