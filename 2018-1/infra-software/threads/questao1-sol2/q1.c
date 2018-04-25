@@ -55,6 +55,8 @@ void imprimiMatriz(){
         }
         tabelaViagens[i].espacos[j] = '\0';
     }
+    // Imprimi o valor de onde foi lido aquele dado no final da string, a criterio
+    // de debug
     printf(ANSI_COLOR_RED ANSI_COLOR_LETTER_BLACK "%s %s %s%s" ANSI_COLOR_RESET " \t%s\n", tabelaViagens[0].codigoViagem, tabelaViagens[0].cidade, tabelaViagens[0].espacos, tabelaViagens[0].horario, tabelaViagens[0].enderecoArquivo);
     printf(ANSI_COLOR_YELLOW ANSI_COLOR_LETTER_BLACK "%s %s %s%s" ANSI_COLOR_RESET " \t%s\n", tabelaViagens[1].codigoViagem, tabelaViagens[1].cidade, tabelaViagens[1].espacos, tabelaViagens[1].horario, tabelaViagens[1].enderecoArquivo);
     printf(ANSI_COLOR_BLUE ANSI_COLOR_LETTER_BLACK "%s %s %s%s" ANSI_COLOR_RESET " \t%s\n", tabelaViagens[2].codigoViagem, tabelaViagens[2].cidade, tabelaViagens[2].espacos, tabelaViagens[2].horario, tabelaViagens[2].enderecoArquivo);
@@ -69,22 +71,34 @@ void *readFile(void *enderecoArquivo){
     FILE *arquivo;
     arquivo = fopen(enderecoArquivo, "rt+");
     Modelo_Viagem entrada;
-    // char entrada[100];
+
     // Ajustar Entrada de Cidades que podem ter como entrada espaços
-    while(fscanf(arquivo, "%d %s %s %s", &entrada.linha, entrada.codigoViagem, entrada.cidade, entrada.horario) != EOF){
+    while(fscanf(arquivo, "%d %s %[^\n]", &entrada.linha, entrada.codigoViagem, entrada.entrada) != EOF){
         
         // Bloco para exclusão mutua e atualização do valor de somente uma única linha
         pthread_mutex_lock(&mymutex[entrada.linha - 1]);
         
         strcpy(tabelaViagens[entrada.linha - 1].codigoViagem, entrada.codigoViagem);
-        strcpy(tabelaViagens[entrada.linha - 1].cidade, entrada.cidade);
-        strcpy(tabelaViagens[entrada.linha - 1].horario, entrada.horario);
+
+        // Tratando os valores de entrada da cidade
+        int i;
+        for(i = 0; i < strlen(entrada.entrada) - 5; i++){
+            tabelaViagens[entrada.linha - 1].cidade[i] = entrada.entrada[i];
+        }
+        tabelaViagens[entrada.linha - 1].cidade[i] = '\0';
+
+        // Tratando os valores de entrada do horario
+        for(i = 0; i < 5; i++){
+            tabelaViagens[entrada.linha - 1].horario[i] = entrada.entrada[strlen(entrada.entrada) -5 + i];
+        }
+        tabelaViagens[entrada.linha - 1].horario[i] = '\0';
+
         strcpy(tabelaViagens[entrada.linha - 1].enderecoArquivo, enderecoArquivo);
         
         pthread_mutex_unlock(&mymutex[entrada.linha - 1]);
 
         sleep(2);
-
+        
         pthread_mutex_lock(&mutexClear);
 
         // Limpa os dados anteriores e imprimi os novos valores na tela
