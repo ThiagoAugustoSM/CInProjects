@@ -1,0 +1,10 @@
+module myMux(
+	input wire in1,
+	input wire in2,
+	input wire sel,
+	
+	output wire out
+);
+
+
+endmodule
