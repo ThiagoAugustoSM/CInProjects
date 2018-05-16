@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="projeto">
+		<CBX_INST_ENTRY INSTANCE_NAME="|thunderBolt|Memoria:inst9|LPM_RAM_DQ:MEM_plus_One|altram:sram|lpm_decode:decode" CBX_FILE_NAME="decode_aef.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|thunderBolt|Memoria:inst9|LPM_RAM_DQ:MEM_plus_One|altram:sram|lpm_mux:mux" CBX_FILE_NAME="mux_bac.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|thunderBolt|Memoria:inst9|LPM_RAM_DQ:MEM_plus_Three|altram:sram|lpm_decode:decode" CBX_FILE_NAME="decode_aef.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|thunderBolt|Memoria:inst9|LPM_RAM_DQ:MEM_plus_Three|altram:sram|lpm_mux:mux" CBX_FILE_NAME="mux_bac.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|thunderBolt|Memoria:inst9|LPM_RAM_DQ:MEM_plus_Two|altram:sram|lpm_decode:decode" CBX_FILE_NAME="decode_aef.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|thunderBolt|Memoria:inst9|LPM_RAM_DQ:MEM_plus_Two|altram:sram|lpm_mux:mux" CBX_FILE_NAME="mux_bac.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|thunderBolt|Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram|lpm_decode:decode" CBX_FILE_NAME="decode_aef.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|thunderBolt|Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram|lpm_mux:mux" CBX_FILE_NAME="mux_bac.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

@@ -1,0 +1,19 @@
+module control (
+	input clk,
+	input rst,
+
+	// Valores para controle de PC
+	output PCWrite,
+	input PCin,
+	output PCout
+
+);
+	assign resetPC = rst;
+	
+	Registrador PC(clk, resetPC, PCWrite, PCin, PCout)
+endmodule
+
+module control_testnech()
+	//create a clock signal
+	
+endmodule

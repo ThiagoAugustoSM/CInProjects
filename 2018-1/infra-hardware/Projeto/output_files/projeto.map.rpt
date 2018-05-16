@@ -1,0 +1,521 @@
+Analysis & Synthesis report for projeto
+Wed May 16 00:06:36 2018
+Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for User Entity Instance: Memoria:inst9|LPM_RAM_DQ:MEM
+ 12. Parameter Settings for User Entity Instance: Memoria:inst9|LPM_RAM_DQ:MEM_plus_One
+ 13. Parameter Settings for User Entity Instance: Memoria:inst9|LPM_RAM_DQ:MEM_plus_Two
+ 14. Parameter Settings for User Entity Instance: Memoria:inst9|LPM_RAM_DQ:MEM_plus_Three
+ 15. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                             ;
++-----------------------------+--------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Wed May 16 00:06:36 2018      ;
+; Quartus II 64-Bit Version   ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
+; Revision Name               ; projeto                                    ;
+; Top-level Entity Name       ; thunderBolt                                ;
+; Family                      ; MAX V                                      ;
+; Total logic elements        ; 17,408                                     ;
+; Total pins                  ; 354                                        ;
+; Total virtual pins          ; 0                                          ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                              ;
++-----------------------------+--------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Top-level entity name                                                      ; thunderBolt        ; projeto            ;
+; Family name                                                                ; MAX V              ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                               ;
++----------------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path       ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                                               ; Library ;
++----------------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------------------------+---------+
+; Componentes do Projeto/ula32.vhd       ; yes             ; User VHDL File                     ; /home/thiagoaugustosm/dev/CInProjects/2018-1/infra-hardware/Projeto/Componentes do Projeto/ula32.vhd       ;         ;
+; Componentes do Projeto/Registrador.vhd ; yes             ; User VHDL File                     ; /home/thiagoaugustosm/dev/CInProjects/2018-1/infra-hardware/Projeto/Componentes do Projeto/Registrador.vhd ;         ;
+; Componentes do Projeto/Memoria.vhd     ; yes             ; User VHDL File                     ; /home/thiagoaugustosm/dev/CInProjects/2018-1/infra-hardware/Projeto/Componentes do Projeto/Memoria.vhd     ;         ;
+; Componentes do Projeto/Instr_Reg.vhd   ; yes             ; User VHDL File                     ; /home/thiagoaugustosm/dev/CInProjects/2018-1/infra-hardware/Projeto/Componentes do Projeto/Instr_Reg.vhd   ;         ;
+; Componentes do Projeto/Banco_reg.vhd   ; yes             ; User VHDL File                     ; /home/thiagoaugustosm/dev/CInProjects/2018-1/infra-hardware/Projeto/Componentes do Projeto/Banco_reg.vhd   ;         ;
+; Esquematicos/thunderBolt.bdf           ; yes             ; User Block Diagram/Schematic File  ; /home/thiagoaugustosm/dev/CInProjects/2018-1/infra-hardware/Projeto/Esquematicos/thunderBolt.bdf           ;         ;
+; lpm_ram_dq.tdf                         ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/lpm_ram_dq.tdf                           ;         ;
+; altram.inc                             ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/altram.inc                               ;         ;
+; lpm_mux.inc                            ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/lpm_mux.inc                              ;         ;
+; lpm_decode.inc                         ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/lpm_decode.inc                           ;         ;
+; aglobal131.inc                         ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/aglobal131.inc                           ;         ;
+; altram.tdf                             ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/altram.tdf                               ;         ;
+; memmodes.inc                           ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/others/maxplus2/memmodes.inc                           ;         ;
+; altsyncram.inc                         ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/altsyncram.inc                           ;         ;
+; lpm_mux.tdf                            ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/lpm_mux.tdf                              ;         ;
+; muxlut.inc                             ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/muxlut.inc                               ;         ;
+; bypassff.inc                           ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/bypassff.inc                             ;         ;
+; altshift.inc                           ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/altshift.inc                             ;         ;
+; db/mux_bac.tdf                         ; yes             ; Auto-Generated Megafunction        ; /home/thiagoaugustosm/dev/CInProjects/2018-1/infra-hardware/Projeto/db/mux_bac.tdf                         ;         ;
+; lpm_decode.tdf                         ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/lpm_decode.tdf                           ;         ;
+; declut.inc                             ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/declut.inc                               ;         ;
+; lpm_compare.inc                        ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/lpm_compare.inc                          ;         ;
+; lpm_constant.inc                       ; yes             ; Megafunction                       ; /home/thiagoaugustosm/altera/13.1/quartus/libraries/megafunctions/lpm_constant.inc                         ;         ;
+; db/decode_aef.tdf                      ; yes             ; Auto-Generated Megafunction        ; /home/thiagoaugustosm/dev/CInProjects/2018-1/infra-hardware/Projeto/db/decode_aef.tdf                      ;         ;
++----------------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary           ;
++---------------------------------------------+---------+
+; Resource                                    ; Usage   ;
++---------------------------------------------+---------+
+; Total logic elements                        ; 17408   ;
+;     -- Combinational with no register       ; 8036    ;
+;     -- Register only                        ; 9308    ;
+;     -- Combinational with a register        ; 64      ;
+;                                             ;         ;
+; Logic element usage by number of LUT inputs ;         ;
+;     -- 4 input functions                    ; 7235    ;
+;     -- 3 input functions                    ; 746     ;
+;     -- 2 input functions                    ; 116     ;
+;     -- 1 input functions                    ; 3       ;
+;     -- 0 input functions                    ; 0       ;
+;                                             ;         ;
+; Logic elements by mode                      ;         ;
+;     -- normal mode                          ; 17388   ;
+;     -- arithmetic mode                      ; 20      ;
+;     -- qfbk mode                            ; 0       ;
+;     -- register cascade mode                ; 0       ;
+;     -- synchronous clear/load mode          ; 0       ;
+;     -- asynchronous clear/load mode         ; 1120    ;
+;                                             ;         ;
+; Total registers                             ; 9372    ;
+; Total logic cells in carry chains           ; 23      ;
+; I/O pins                                    ; 354     ;
+; Maximum fan-out node                        ; Reset15 ;
+; Maximum fan-out                             ; 9372    ;
+; Total fan-out                               ; 60659   ;
+; Average fan-out                             ; 3.42    ;
++---------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                           ;
++--------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                 ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                                                                          ; Library Name ;
++--------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------------------------------------------------------------------------------------+--------------+
+; |thunderBolt                               ; 17408 (0)   ; 9372         ; 0          ; 354  ; 0            ; 8036 (0)     ; 9308 (0)          ; 64 (0)           ; 23 (0)          ; 0 (0)      ; |thunderBolt                                                                                                 ; work         ;
+;    |Banco_reg:inst|                        ; 1704 (1704) ; 1024         ; 0          ; 0    ; 0            ; 680 (680)    ; 1024 (1024)       ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Banco_reg:inst                                                                                  ; work         ;
+;    |Instr_Reg:inst3|                       ; 32 (32)     ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 32 (32)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Instr_Reg:inst3                                                                                 ; work         ;
+;    |Memoria:inst9|                         ; 15374 (23)  ; 8252         ; 0          ; 0    ; 0            ; 7122 (23)    ; 8220 (0)          ; 32 (0)           ; 23 (23)         ; 0 (0)      ; |thunderBolt|Memoria:inst9                                                                                   ; work         ;
+;       |lpm_ram_dq:MEM_plus_One|            ; 3856 (0)    ; 2063         ; 0          ; 0    ; 0            ; 1793 (0)     ; 2055 (0)          ; 8 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_One                                                           ; work         ;
+;          |altram:sram|                     ; 3856 (2063) ; 2063         ; 0          ; 0    ; 0            ; 1793 (0)     ; 2055 (2055)       ; 8 (8)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_One|altram:sram                                               ; work         ;
+;             |lpm_decode:decode|            ; 289 (0)     ; 0            ; 0          ; 0    ; 0            ; 289 (0)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_One|altram:sram|lpm_decode:decode                             ; work         ;
+;                |decode_aef:auto_generated| ; 289 (289)   ; 0            ; 0          ; 0    ; 0            ; 289 (289)    ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_One|altram:sram|lpm_decode:decode|decode_aef:auto_generated   ; work         ;
+;             |lpm_mux:mux|                  ; 1504 (0)    ; 0            ; 0          ; 0    ; 0            ; 1504 (0)     ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_One|altram:sram|lpm_mux:mux                                   ; work         ;
+;                |mux_bac:auto_generated|    ; 1504 (1504) ; 0            ; 0          ; 0    ; 0            ; 1504 (1504)  ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_One|altram:sram|lpm_mux:mux|mux_bac:auto_generated            ; work         ;
+;       |lpm_ram_dq:MEM_plus_Three|          ; 3830 (0)    ; 2064         ; 0          ; 0    ; 0            ; 1766 (0)     ; 2056 (0)          ; 8 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Three                                                         ; work         ;
+;          |altram:sram|                     ; 3830 (2064) ; 2064         ; 0          ; 0    ; 0            ; 1766 (0)     ; 2056 (2056)       ; 8 (8)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Three|altram:sram                                             ; work         ;
+;             |lpm_decode:decode|            ; 273 (0)     ; 0            ; 0          ; 0    ; 0            ; 273 (0)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Three|altram:sram|lpm_decode:decode                           ; work         ;
+;                |decode_aef:auto_generated| ; 273 (273)   ; 0            ; 0          ; 0    ; 0            ; 273 (273)    ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Three|altram:sram|lpm_decode:decode|decode_aef:auto_generated ; work         ;
+;             |lpm_mux:mux|                  ; 1493 (0)    ; 0            ; 0          ; 0    ; 0            ; 1493 (0)     ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Three|altram:sram|lpm_mux:mux                                 ; work         ;
+;                |mux_bac:auto_generated|    ; 1493 (1493) ; 0            ; 0          ; 0    ; 0            ; 1493 (1493)  ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Three|altram:sram|lpm_mux:mux|mux_bac:auto_generated          ; work         ;
+;       |lpm_ram_dq:MEM_plus_Two|            ; 3838 (0)    ; 2063         ; 0          ; 0    ; 0            ; 1775 (0)     ; 2055 (0)          ; 8 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Two                                                           ; work         ;
+;          |altram:sram|                     ; 3838 (2063) ; 2063         ; 0          ; 0    ; 0            ; 1775 (0)     ; 2055 (2055)       ; 8 (8)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Two|altram:sram                                               ; work         ;
+;             |lpm_decode:decode|            ; 278 (0)     ; 0            ; 0          ; 0    ; 0            ; 278 (0)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Two|altram:sram|lpm_decode:decode                             ; work         ;
+;                |decode_aef:auto_generated| ; 278 (278)   ; 0            ; 0          ; 0    ; 0            ; 278 (278)    ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Two|altram:sram|lpm_decode:decode|decode_aef:auto_generated   ; work         ;
+;             |lpm_mux:mux|                  ; 1497 (0)    ; 0            ; 0          ; 0    ; 0            ; 1497 (0)     ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Two|altram:sram|lpm_mux:mux                                   ; work         ;
+;                |mux_bac:auto_generated|    ; 1497 (1497) ; 0            ; 0          ; 0    ; 0            ; 1497 (1497)  ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM_plus_Two|altram:sram|lpm_mux:mux|mux_bac:auto_generated            ; work         ;
+;       |lpm_ram_dq:MEM|                     ; 3827 (0)    ; 2062         ; 0          ; 0    ; 0            ; 1765 (0)     ; 2054 (0)          ; 8 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM                                                                    ; work         ;
+;          |altram:sram|                     ; 3827 (2062) ; 2062         ; 0          ; 0    ; 0            ; 1765 (0)     ; 2054 (2054)       ; 8 (8)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM|altram:sram                                                        ; work         ;
+;             |lpm_decode:decode|            ; 279 (0)     ; 0            ; 0          ; 0    ; 0            ; 279 (0)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM|altram:sram|lpm_decode:decode                                      ; work         ;
+;                |decode_aef:auto_generated| ; 279 (279)   ; 0            ; 0          ; 0    ; 0            ; 279 (279)    ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM|altram:sram|lpm_decode:decode|decode_aef:auto_generated            ; work         ;
+;             |lpm_mux:mux|                  ; 1486 (0)    ; 0            ; 0          ; 0    ; 0            ; 1486 (0)     ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM|altram:sram|lpm_mux:mux                                            ; work         ;
+;                |mux_bac:auto_generated|    ; 1486 (1486) ; 0            ; 0          ; 0    ; 0            ; 1486 (1486)  ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Memoria:inst9|lpm_ram_dq:MEM|altram:sram|lpm_mux:mux|mux_bac:auto_generated                     ; work         ;
+;    |Registrador:B_reg|                     ; 32 (32)     ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (32)          ; 0 (0)           ; 0 (0)      ; |thunderBolt|Registrador:B_reg                                                                               ; work         ;
+;    |Registrador:PC|                        ; 32 (32)     ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 32 (32)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Registrador:PC                                                                                  ; work         ;
+;    |Ula32:inst6|                           ; 234 (234)   ; 0            ; 0          ; 0    ; 0            ; 234 (234)    ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |thunderBolt|Ula32:inst6                                                                                     ; work         ;
++--------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                            ;
++----------------------------------------------------------------+------------------------------------------------------------------------------+
+; Register name                                                  ; Reason for Removal                                                           ;
++----------------------------------------------------------------+------------------------------------------------------------------------------+
+; Memoria:inst9|lpm_ram_dq:MEM|altram:sram|ffaddress[0]          ; Merged with Memoria:inst9|lpm_ram_dq:MEM_plus_Two|altram:sram|ffaddress[0]   ;
+; Memoria:inst9|lpm_ram_dq:MEM_plus_Two|altram:sram|ffaddress[0] ; Merged with Memoria:inst9|lpm_ram_dq:MEM_plus_Three|altram:sram|ffaddress[0] ;
+; Memoria:inst9|lpm_ram_dq:MEM_plus_One|altram:sram|ffaddress[0] ; Merged with Memoria:inst9|lpm_ram_dq:MEM_plus_Three|altram:sram|ffaddress[0] ;
+; Memoria:inst9|lpm_ram_dq:MEM|altram:sram|ffaddress[1]          ; Merged with Memoria:inst9|lpm_ram_dq:MEM_plus_Two|altram:sram|ffaddress[1]   ;
+; Total Number of Removed Registers = 4                          ;                                                                              ;
++----------------------------------------------------------------+------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 9372  ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 1120  ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 9312  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
+; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; Yes        ; |thunderBolt|Registrador:B_reg|Saida[25] ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 64 LEs               ; 96 LEs                 ; No         ; |thunderBolt|Ula32:inst6|Mux60           ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 96 LEs               ; 64 LEs                 ; No         ; |thunderBolt|Ula32:inst6|Mux0            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Memoria:inst9|LPM_RAM_DQ:MEM ;
++------------------------+----------------+---------------------------------+
+; Parameter Name         ; Value          ; Type                            ;
++------------------------+----------------+---------------------------------+
+; LPM_WIDTH              ; 8              ; Signed Integer                  ;
+; LPM_WIDTHAD            ; 8              ; Signed Integer                  ;
+; LPM_NUMWORDS           ; 0              ; Signed Integer                  ;
+; LPM_INDATA             ; REGISTERED     ; Untyped                         ;
+; LPM_ADDRESS_CONTROL    ; REGISTERED     ; Untyped                         ;
+; LPM_OUTDATA            ; REGISTERED     ; Untyped                         ;
+; LPM_FILE               ; instrucoes.mif ; Untyped                         ;
+; USE_EAB                ; ON             ; Untyped                         ;
+; DEVICE_FAMILY          ; MAX V          ; Untyped                         ;
+; CBXI_PARAMETER         ; NOTHING        ; Untyped                         ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                      ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                    ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                    ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                  ;
++------------------------+----------------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Memoria:inst9|LPM_RAM_DQ:MEM_plus_One ;
++------------------------+----------------+------------------------------------------+
+; Parameter Name         ; Value          ; Type                                     ;
++------------------------+----------------+------------------------------------------+
+; LPM_WIDTH              ; 8              ; Signed Integer                           ;
+; LPM_WIDTHAD            ; 8              ; Signed Integer                           ;
+; LPM_NUMWORDS           ; 0              ; Signed Integer                           ;
+; LPM_INDATA             ; REGISTERED     ; Untyped                                  ;
+; LPM_ADDRESS_CONTROL    ; REGISTERED     ; Untyped                                  ;
+; LPM_OUTDATA            ; REGISTERED     ; Untyped                                  ;
+; LPM_FILE               ; instrucoes.mif ; Untyped                                  ;
+; USE_EAB                ; ON             ; Untyped                                  ;
+; DEVICE_FAMILY          ; MAX V          ; Untyped                                  ;
+; CBXI_PARAMETER         ; NOTHING        ; Untyped                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                           ;
++------------------------+----------------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Memoria:inst9|LPM_RAM_DQ:MEM_plus_Two ;
++------------------------+----------------+------------------------------------------+
+; Parameter Name         ; Value          ; Type                                     ;
++------------------------+----------------+------------------------------------------+
+; LPM_WIDTH              ; 8              ; Signed Integer                           ;
+; LPM_WIDTHAD            ; 8              ; Signed Integer                           ;
+; LPM_NUMWORDS           ; 0              ; Signed Integer                           ;
+; LPM_INDATA             ; REGISTERED     ; Untyped                                  ;
+; LPM_ADDRESS_CONTROL    ; REGISTERED     ; Untyped                                  ;
+; LPM_OUTDATA            ; REGISTERED     ; Untyped                                  ;
+; LPM_FILE               ; instrucoes.mif ; Untyped                                  ;
+; USE_EAB                ; ON             ; Untyped                                  ;
+; DEVICE_FAMILY          ; MAX V          ; Untyped                                  ;
+; CBXI_PARAMETER         ; NOTHING        ; Untyped                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                           ;
++------------------------+----------------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Memoria:inst9|LPM_RAM_DQ:MEM_plus_Three ;
++------------------------+----------------+--------------------------------------------+
+; Parameter Name         ; Value          ; Type                                       ;
++------------------------+----------------+--------------------------------------------+
+; LPM_WIDTH              ; 8              ; Signed Integer                             ;
+; LPM_WIDTHAD            ; 8              ; Signed Integer                             ;
+; LPM_NUMWORDS           ; 0              ; Signed Integer                             ;
+; LPM_INDATA             ; REGISTERED     ; Untyped                                    ;
+; LPM_ADDRESS_CONTROL    ; REGISTERED     ; Untyped                                    ;
+; LPM_OUTDATA            ; REGISTERED     ; Untyped                                    ;
+; LPM_FILE               ; instrucoes.mif ; Untyped                                    ;
+; USE_EAB                ; ON             ; Untyped                                    ;
+; DEVICE_FAMILY          ; MAX V          ; Untyped                                    ;
+; CBXI_PARAMETER         ; NOTHING        ; Untyped                                    ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                 ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                               ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                               ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                             ;
++------------------------+----------------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
+    Info: Processing started: Wed May 16 00:05:11 2018
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off projeto -c projeto
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file Componentes do Projeto/ula32.vhd
+    Info (12022): Found design unit 1: Ula32-behavioral
+    Info (12023): Found entity 1: Ula32
+Info (12021): Found 2 design units, including 1 entities, in source file Componentes do Projeto/Registrador.vhd
+    Info (12022): Found design unit 1: Registrador-behavioral_arch
+    Info (12023): Found entity 1: Registrador
+Info (12021): Found 2 design units, including 1 entities, in source file Componentes do Projeto/RegDesloc.vhd
+    Info (12022): Found design unit 1: RegDesloc-behavioral_arch
+    Info (12023): Found entity 1: RegDesloc
+Info (12021): Found 3 design units, including 1 entities, in source file Componentes do Projeto/Memoria.vhd
+    Info (12022): Found design unit 1: ram_constants
+    Info (12022): Found design unit 2: Memoria-behavioral_arch
+    Info (12023): Found entity 1: Memoria
+Info (12021): Found 2 design units, including 1 entities, in source file Componentes do Projeto/Instr_Reg.vhd
+    Info (12022): Found design unit 1: Instr_Reg-behavioral_arch
+    Info (12023): Found entity 1: Instr_Reg
+Info (12021): Found 2 design units, including 1 entities, in source file Componentes do Projeto/Banco_reg.vhd
+    Info (12022): Found design unit 1: Banco_reg-behavioral_arch
+    Info (12023): Found entity 1: Banco_reg
+Info (12021): Found 13 design units, including 13 entities, in source file Componentes Criados/myMux.v
+    Info (12023): Found entity 1: mux_31_2
+    Info (12023): Found entity 2: mux_31_2_testbench
+    Info (12023): Found entity 3: mux_31_1
+    Info (12023): Found entity 4: mux_31_1_testbench
+    Info (12023): Found entity 5: mux_31_3
+    Info (12023): Found entity 6: mux_31_3_testbench
+    Info (12023): Found entity 7: mux_4_2_testbench
+    Info (12023): Found entity 8: mux_5_2
+    Info (12023): Found entity 9: mux_5_2_testbench
+    Info (12023): Found entity 10: mux_5_3
+    Info (12023): Found entity 11: mux_5_3_testbench
+    Info (12023): Found entity 12: mux_1_2
+    Info (12023): Found entity 13: mux_1_2_testbench
+Warning (10238): Verilog Module Declaration warning at controle.v(11): ignored anonymous port(s) indicated by duplicate or dangling comma(s) in the port list for module "controle"
+Info (12021): Found 1 design units, including 1 entities, in source file Componentes Criados/controle.v
+    Info (12023): Found entity 1: controle
+Info (12021): Found 1 design units, including 1 entities, in source file Esquematicos/thunderBolt.bdf
+    Info (12023): Found entity 1: thunderBolt
+Info (12021): Found 2 design units, including 2 entities, in source file Componentes Criados/thunderBoltProject.v
+    Info (12023): Found entity 1: control
+    Info (12023): Found entity 2: control_testnech
+Warning (10236): Verilog HDL Implicit Net warning at thunderBoltProject.v(11): created implicit net for "resetPC"
+Info (12127): Elaborating entity "thunderBolt" for the top level hierarchy
+Warning (275083): Bus "Saida14[31..0]" found using same base name as "Saida", which might lead to a name conflict.
+Warning (275012): Pin "Reset11" overlaps another pin, block, or symbol
+Warning (275012): Pin "RegWrite" overlaps another pin, block, or symbol
+Warning (275012): Pin "ReadReg1[4..0]" overlaps another pin, block, or symbol
+Warning (275012): Pin "ReadReg2[4..0]" overlaps another pin, block, or symbol
+Warning (275011): Block or symbol "Banco_reg" of instance "inst" overlaps another block or symbol
+Warning (275011): Block or symbol "Ula32" of instance "inst6" overlaps another block or symbol
+Warning (275011): Block or symbol "Memoria" of instance "inst9" overlaps another block or symbol
+Warning (275011): Block or symbol "Registrador" of instance "PC" overlaps another block or symbol
+Warning (275011): Block or symbol "Registrador" of instance "B_reg" overlaps another block or symbol
+Warning (275080): Converted elements in bus name "Saida" using legacy naming rules. Make any assignments on the new names, not on the original names.
+    Warning (275081): Converted element name(s) from "Saida[31..0]" to "Saida31..0"
+Warning (275080): Converted elements in bus name "Saida14" using legacy naming rules. Make any assignments on the new names, not on the original names.
+    Warning (275081): Converted element name(s) from "Saida14[31..0]" to "Saida1431..0"
+Info (12128): Elaborating entity "Ula32" for hierarchy "Ula32:inst6"
+Info (12128): Elaborating entity "Instr_Reg" for hierarchy "Instr_Reg:inst3"
+Info (12128): Elaborating entity "Memoria" for hierarchy "Memoria:inst9"
+Info (12128): Elaborating entity "LPM_RAM_DQ" for hierarchy "Memoria:inst9|LPM_RAM_DQ:MEM"
+Info (12130): Elaborated megafunction instantiation "Memoria:inst9|LPM_RAM_DQ:MEM"
+Info (12133): Instantiated megafunction "Memoria:inst9|LPM_RAM_DQ:MEM" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTH" = "8"
+    Info (12134): Parameter "LPM_WIDTHAD" = "8"
+    Info (12134): Parameter "LPM_NUMWORDS" = "0"
+    Info (12134): Parameter "LPM_INDATA" = "REGISTERED"
+    Info (12134): Parameter "LPM_ADDRESS_CONTROL" = "REGISTERED"
+    Info (12134): Parameter "LPM_OUTDATA" = "REGISTERED"
+    Info (12134): Parameter "LPM_FILE" = "instrucoes.mif"
+    Info (12134): Parameter "LPM_TYPE" = "LPM_RAM_DQ"
+    Info (12134): Parameter "USE_EAB" = "ON"
+    Info (12134): Parameter "INTENDED_DEVICE_FAMILY" = "UNUSED"
+    Info (12134): Parameter "LPM_HINT" = "UNUSED"
+Info (12128): Elaborating entity "altram" for hierarchy "Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram"
+Warning (287001): Assertion warning: Current device family (MAX V) does not support synchronous RAM -- implementing the synchronous RAM as a DFFE array instead
+Warning (287001): Assertion warning: Ignored FILE parameter -- the MAX V device family (for LE implementation) does not support RAM initialization
+Info (12131): Elaborated megafunction instantiation "Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram", which is child of megafunction instantiation "Memoria:inst9|LPM_RAM_DQ:MEM"
+Info (12128): Elaborating entity "lpm_mux" for hierarchy "Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram|lpm_mux:mux"
+Info (12131): Elaborated megafunction instantiation "Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram|lpm_mux:mux", which is child of megafunction instantiation "Memoria:inst9|LPM_RAM_DQ:MEM"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_bac.tdf
+    Info (12023): Found entity 1: mux_bac
+Info (12128): Elaborating entity "mux_bac" for hierarchy "Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram|lpm_mux:mux|mux_bac:auto_generated"
+Info (12128): Elaborating entity "lpm_decode" for hierarchy "Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram|lpm_decode:decode"
+Info (12131): Elaborated megafunction instantiation "Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram|lpm_decode:decode", which is child of megafunction instantiation "Memoria:inst9|LPM_RAM_DQ:MEM"
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_aef.tdf
+    Info (12023): Found entity 1: decode_aef
+Info (12128): Elaborating entity "decode_aef" for hierarchy "Memoria:inst9|LPM_RAM_DQ:MEM|altram:sram|lpm_decode:decode|decode_aef:auto_generated"
+Info (12128): Elaborating entity "Registrador" for hierarchy "Registrador:PC"
+Info (12128): Elaborating entity "Banco_reg" for hierarchy "Banco_reg:inst"
+Warning (21074): Design contains 29 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "Address[31]"
+    Warning (15610): No output dependent on input pin "Address[30]"
+    Warning (15610): No output dependent on input pin "Address[29]"
+    Warning (15610): No output dependent on input pin "Address[28]"
+    Warning (15610): No output dependent on input pin "Address[27]"
+    Warning (15610): No output dependent on input pin "Address[26]"
+    Warning (15610): No output dependent on input pin "Address[25]"
+    Warning (15610): No output dependent on input pin "Address[24]"
+    Warning (15610): No output dependent on input pin "Address[23]"
+    Warning (15610): No output dependent on input pin "Address[22]"
+    Warning (15610): No output dependent on input pin "Address[21]"
+    Warning (15610): No output dependent on input pin "Address[20]"
+    Warning (15610): No output dependent on input pin "Address[19]"
+    Warning (15610): No output dependent on input pin "Address[18]"
+    Warning (15610): No output dependent on input pin "Address[17]"
+    Warning (15610): No output dependent on input pin "Address[16]"
+    Warning (15610): No output dependent on input pin "Address[15]"
+    Warning (15610): No output dependent on input pin "Address[14]"
+    Warning (15610): No output dependent on input pin "Address[13]"
+    Warning (15610): No output dependent on input pin "Address[12]"
+    Warning (15610): No output dependent on input pin "Address[11]"
+    Warning (15610): No output dependent on input pin "Address[10]"
+    Warning (15610): No output dependent on input pin "Address[9]"
+    Warning (15610): No output dependent on input pin "Address[8]"
+    Warning (15610): No output dependent on input pin "ReadReg1[4]"
+    Warning (15610): No output dependent on input pin "ReadReg1[3]"
+    Warning (15610): No output dependent on input pin "ReadReg1[2]"
+    Warning (15610): No output dependent on input pin "ReadReg1[1]"
+    Warning (15610): No output dependent on input pin "ReadReg1[0]"
+Info (21057): Implemented 17762 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 220 input pins
+    Info (21059): Implemented 134 output pins
+    Info (21061): Implemented 17408 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 49 warnings
+    Info: Peak virtual memory: 868 megabytes
+    Info: Processing ended: Wed May 16 00:06:36 2018
+    Info: Elapsed time: 00:01:25
+    Info: Total CPU time (on all processors): 00:01:19
+
+

@@ -1,0 +1,10 @@
+module projetoGeral(
+	IorD,
+	WR,
+	AluSrcA,
+	AluSrcB,
+	AluOP,
+	PCsrc
+);
+
+endmodule
